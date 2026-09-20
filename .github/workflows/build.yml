@@ -30,7 +30,7 @@ jobs:
             shell: bash
             generator: Ninja
             triplet: x64-linux-release
-            artifact: build/*.AppImage
+            artifact: build/*.zip
             vcpkg_root: $VCPKG_INSTALLATION_ROOT
             options: -DCMAKE_INSTALL_PREFIX=/usr
 
@@ -73,10 +73,6 @@ jobs:
         run: |
           cd build
           cpack
-
-      - name: List files in the workspace
-        if: runner.os == 'Linux'
-        run: find ${{ github.workspace }} -iname '.*appimage'
 
       - name: Upload
         if: matrix.config.artifact
