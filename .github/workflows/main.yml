@@ -30,19 +30,9 @@ jobs:
             shell: bash
             generator: Ninja
             triplet: x64-linux-release
-            artifact: build/3dco
+            artifact: build/*.AppImage
             vcpkg_root: $VCPKG_INSTALLATION_ROOT
             options: -DCMAKE_INSTALL_PREFIX=/usr
-
-          - name: Windows
-            runs-on: windows-latest
-            shell: pwsh
-            generator: Visual Studio 18 2026
-            triplet: x64-windows-static-release
-            artifact: build/*.zip
-            vcpkg_root: ${env:VCPKG_INSTALLATION_ROOT}
-            options: -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
-
     steps:
       - name: Configure Developer Command Prompt (Windows)
         if: runner.os == 'Windows'
