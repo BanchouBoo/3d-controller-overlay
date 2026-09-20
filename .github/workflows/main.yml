@@ -83,6 +83,10 @@ jobs:
           cd build
           cpack
 
+      - name: List files in the workspace
+        if: runner.os == 'Linux'
+        run: find ${{ github.workspace }} -iname '.*appimage'
+
       - name: Upload
         if: matrix.config.artifact
         uses: actions/upload-artifact@v7
