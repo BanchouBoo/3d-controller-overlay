@@ -34,15 +34,6 @@ jobs:
             vcpkg_root: $VCPKG_INSTALLATION_ROOT
             options: -DCMAKE_INSTALL_PREFIX=/usr
 
-          - name: Windows
-            runs-on: windows-latest
-            shell: pwsh
-            generator: Visual Studio 18 2026
-            triplet: x64-windows-static-release
-            artifact: build/*.zip
-            vcpkg_root: ${env:VCPKG_INSTALLATION_ROOT}
-            options: -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded
-
     steps:
       - name: Configure Developer Command Prompt (Windows)
         if: runner.os == 'Windows'
@@ -82,6 +73,10 @@ jobs:
         run: |
           cd build
           cpack
+
+      - name: List files in the workspace
+        if: runner.os == 'Linux'
+        run: find ${{ github.workspace }} -iname '.*appimage'
 
       - name: Upload
         if: matrix.config.artifact
