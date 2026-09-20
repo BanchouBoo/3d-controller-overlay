@@ -30,7 +30,7 @@ jobs:
             shell: bash
             generator: Ninja
             triplet: x64-linux-release
-            artifact: build/*.AppImage
+            artifact: build/3dco
             vcpkg_root: $VCPKG_INSTALLATION_ROOT
             options: -DCMAKE_INSTALL_PREFIX=/usr
 
